@@ -5,18 +5,18 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Global chat",
-  description: "Global chat application for everybody",
+    title: "Global chat",
+    description: "Global chat application for everybody",
 };
 
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
-  );
+    return (
+        <html lang="en" className="dark">
+            <body className={`${inter.className}`}>{children}</body>
+        </html>
+    );
 }
