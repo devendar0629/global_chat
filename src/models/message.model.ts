@@ -18,7 +18,7 @@ const messageSchema = new mongoose.Schema(
     }
 );
 
-export type TMessage = InferSchemaType<typeof messageSchema>;
+export type TMessage = InferSchemaType<typeof messageSchema> & { _id: string };
 
 const Message =
     (mongoose.models.Message as mongoose.Model<TMessage>) ||
