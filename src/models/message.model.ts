@@ -2,6 +2,11 @@ import mongoose, { InferSchemaType } from "mongoose";
 
 const messageSchema = new mongoose.Schema(
     {
+        createdBy: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+            required: [true, "userId is required"],
+        },
         content: {
             type: String,
             required: [true, "Message is required"],
