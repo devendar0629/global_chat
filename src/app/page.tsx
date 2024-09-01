@@ -1,5 +1,5 @@
 import SendMessage from "@/components/custom/SendMessage";
-import MessagesArea from "@/components/custom/server/MessagesArea";
+import MessagesArea from "@/components/custom/client/MessagesArea";
 
 export default function Home() {
     return (

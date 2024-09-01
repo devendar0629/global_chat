@@ -19,11 +19,16 @@ export async function GET(
                     pipeline: [
                         {
                             $project: {
-                                _id: 0,
                                 username: 1,
                             },
                         },
                     ],
+                },
+            },
+            {
+                $unwind: {
+                    path: "$createdBy",
+                    preserveNullAndEmptyArrays: true,
                 },
             },
             {
@@ -52,7 +57,7 @@ export async function GET(
         return NextResponse.json(
             {
                 success: true,
-                data: messages,
+                data: messages.reverse(),
                 message: "Messages fetched successfully",
             },
             { status: 200 }
