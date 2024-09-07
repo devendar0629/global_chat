@@ -104,3 +104,5 @@ const ChatPage: React.FC<ChatPageProps> = function () {
 };
 
 export default ChatPage;
+
+export const dynamic = "force-dynamic";
