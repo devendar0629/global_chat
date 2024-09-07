@@ -5,6 +5,7 @@ import Message from "../Message";
 import { Loader2Icon } from "lucide-react";
 import { useCurrentUser } from "@/custom-hooks/useCurrentUser";
 import { useToast } from "@/hooks/use-toast";
+import { useEffect, useRef } from "react";
 
 interface CreatedBy {
     createdBy: {
@@ -20,6 +21,14 @@ interface MessagesAreaProps {
 const MessagesArea: React.FC<MessagesAreaProps> = function ({ messages }) {
     const { currentUser, error, fetching } = useCurrentUser();
     const { toast } = useToast();
+    const containerRef = useRef<HTMLElement>(null);
+
+    useEffect(() => {
+        if (containerRef.current) {
+            containerRef.current.scrollTop = containerRef.current.scrollHeight;
+        }
+    }, [messages]);
+
     if (error) {
         toast({
             title: "error",
@@ -29,7 +38,10 @@ const MessagesArea: React.FC<MessagesAreaProps> = function ({ messages }) {
 
     return (
         <>
-            <section className="grow h-[768px] overflow-auto bg-sky-950/45 p-6 relative">
+            <section
+                ref={containerRef}
+                className="grow h-[768px] overflow-auto bg-sky-950/45 p-6 relative"
+            >
                 {fetching ? (
                     <p className="font-medium absolute text-xl translate-x-[-50%] translate-y-[-50%] top-[50%] left-[50%]">
                         <Loader2Icon className="animate-spin mr-1.5 mb-0.5 inline-block" />{" "}
