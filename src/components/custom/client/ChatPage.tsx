@@ -17,11 +17,9 @@ const ChatPage: React.FC<ChatPageProps> = function () {
         });
 
         s.on("connect", () => {
-            console.log("Connected !");
             setSocket(s);
 
             s.once("initial-messages", (messages) => {
-                console.log("Init mss: ", messages);
                 setInitialMessages(messages);
             });
 
