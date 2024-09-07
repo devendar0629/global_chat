@@ -40,7 +40,7 @@ const MessagesArea: React.FC<MessagesAreaProps> = function ({ messages }) {
         <>
             <section
                 ref={containerRef}
-                className="grow h-[768px] overflow-auto bg-sky-950/45 p-6 relative"
+                className="grow h-[668px] overflow-auto bg-sky-950/45 p-6 relative"
             >
                 {fetching ? (
                     <p className="font-medium absolute text-xl translate-x-[-50%] translate-y-[-50%] top-[50%] left-[50%]">
