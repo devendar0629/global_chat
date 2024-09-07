@@ -1,7 +1,7 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import { ApiResponse } from "@/app/types";
 import { connectDB } from "@/lib/db/db";
-import { getServerSession } from "next-auth";
+import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
@@ -9,7 +9,9 @@ export async function GET(
 ): Promise<NextResponse<ApiResponse>> {
     await connectDB();
     try {
-        const response = await getServerSession(authOptions);
+        const response = await getToken({
+            req: request,
+        });
 
         if (!response) {
             return NextResponse.json(
@@ -27,8 +29,8 @@ export async function GET(
             {
                 success: true,
                 data: {
-                    _id: response.user._id,
-                    username: response.user.username,
+                    _id: response._id,
+                    username: response.username,
                     message: "Current user fetched successfully",
                 },
             },

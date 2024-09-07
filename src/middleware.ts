@@ -13,7 +13,7 @@ export async function middleware(request: NextRequest) {
         return NextResponse.next();
     }
 
-    const publicRouteRegex = /^\/(verify|signin|signup)/;
+    const publicRouteRegex = /^\/(signin|signup)/;
     const isPublicRoute = publicRouteRegex.test(request.nextUrl.pathname);
 
     if (!isPublicRoute && !token) {

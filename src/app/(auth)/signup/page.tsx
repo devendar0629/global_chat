@@ -65,7 +65,7 @@ const Signup: React.FC<PageProps> = function () {
             >
                 <div className="lg:w-[555px] p-5 flex flex-col flex-nowrap tracking-wider">
                     <h2 className="text-center text-[2.5rem] font-semibold">
-                        Signup to Students Group
+                        Signup to GLOBAL CHAT
                     </h2>
 
                     <form

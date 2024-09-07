@@ -1,13 +1,9 @@
-import { ApiResponse } from "@/app/types";
 import { connectDB } from "@/lib/db/db";
 import Message from "@/models/message.model";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(
-    request: NextRequest
-): Promise<NextResponse<ApiResponse>> {
+export async function GET(request: NextRequest) {
     await connectDB();
-
     try {
         const messages = await Message.aggregate([
             {
@@ -41,36 +37,8 @@ export async function GET(
             },
         ]);
 
-        if (!messages) {
-            return NextResponse.json(
-                {
-                    success: false,
-                    error: {
-                        message:
-                            "Something went wrong while fetching the messages",
-                    },
-                },
-                { status: 500 }
-            );
-        }
-
-        return NextResponse.json(
-            {
-                success: true,
-                data: messages.reverse(),
-                message: "Messages fetched successfully",
-            },
-            { status: 200 }
-        );
+        return NextResponse.json(messages, { status: 200 });
     } catch (error) {
-        return NextResponse.json(
-            {
-                success: false,
-                error: {
-                    message: "Something went wrong while fetching the messages",
-                },
-            },
-            { status: 500 }
-        );
+        return NextResponse.json({}, { status: 500 });
     }
 }
