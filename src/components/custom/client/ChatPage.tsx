@@ -80,7 +80,12 @@ const ChatPage: React.FC<ChatPageProps> = function () {
             });
 
             s.on("server-message", (message) => {
-                setInitialMessages((prev) => [...prev, message]);
+                if (initialMessages.length >= 100) {
+                    setInitialMessages((prev) => [
+                        ...prev.slice(100 - prev.length, prev.length - 1),
+                        message,
+                    ]);
+                } else setInitialMessages((prev) => [...prev, message]);
             });
         });
 
