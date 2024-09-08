@@ -39,7 +39,7 @@ const Signin: React.FC<PageProps> = function () {
             });
 
             if (response?.ok) {
-                router.push("/app");
+                router.push("/");
             } else {
                 setError("root", {
                     message: response?.error ?? "Something went wrong",
