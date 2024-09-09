@@ -72,6 +72,15 @@ const ChatPage: React.FC<ChatPageProps> = function () {
             withCredentials: true,
         });
 
+        // const io = new Server(httpServer, {
+        //     cookie: {
+        //         name: "io",
+        //         path: "/",
+        //         httpOnly: true,
+        //         sameSite: "lax",
+        //     },
+        // });
+
         s.on("connect", () => {
             setSocket(s);
 
