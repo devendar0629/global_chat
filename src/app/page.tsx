@@ -8,6 +8,8 @@ export default async function Home() {
             process.env.NEXT_PUBLIC__A_CK_NAME! || "next-auth.session-token"
         )?.value || "";
 
+    console.log("Cookies: ", cookie);
+
     return (
         <>
             <main className="flex flex-col flex-nowrap min-h-screen rounded-md">
