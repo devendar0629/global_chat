@@ -8,7 +8,7 @@ export default async function Home() {
             process.env.NEXT_PUBLIC__A_CK_NAME! || "next-auth.session-token"
         )?.value || "";
 
-    console.log("Cookies: ", cookie);
+    console.log("Parsed Cookies: ", cookie);
 
     return (
         <>
