@@ -17,12 +17,15 @@ export async function middleware(request: NextRequest) {
     const isPublicRoute = publicRouteRegex.test(request.nextUrl.pathname);
 
     if (!isPublicRoute && !token) {
+        console.log("1");
         return NextResponse.redirect(
             new URL("/signin", request.nextUrl.origin)
         );
     } else if (isPublicRoute && token) {
         return NextResponse.redirect(new URL("/", request.nextUrl.origin));
     }
+
+    console.log("Allowed !", request);
 
     return NextResponse.next();
 }
