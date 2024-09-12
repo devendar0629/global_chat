@@ -17,7 +17,9 @@ import { Button } from "@/components/ui/button";
 import { LogOutIcon } from "lucide-react";
 import { signOut } from "next-auth/react";
 
-interface ChatPageProps {}
+interface ChatPageProps {
+    _a_Ck: string;
+}
 interface HeaderProps {}
 
 const Header: React.FC<HeaderProps> = function () {
@@ -63,23 +65,17 @@ const Header: React.FC<HeaderProps> = function () {
     );
 };
 
-const ChatPage: React.FC<ChatPageProps> = function () {
+const ChatPage: React.FC<ChatPageProps> = function ({ _a_Ck }) {
     const [socket, setSocket] = useState<Socket | null>(null);
     const [initialMessages, setInitialMessages] = useState<any[]>([]);
 
     useEffect(() => {
         const s = io(process.env.NEXT_PUBLIC_SOCKET_SERVER_URL!, {
             withCredentials: true,
+            auth: {
+                _a_Ck,
+            },
         });
-
-        // const io = new Server(httpServer, {
-        //     cookie: {
-        //         name: "io",
-        //         path: "/",
-        //         httpOnly: true,
-        //         sameSite: "lax",
-        //     },
-        // });
 
         s.on("connect", () => {
             setSocket(s);
